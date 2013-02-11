@@ -1,5 +1,5 @@
 <h3 class="pull-left">Suggestions</h3>
-<%= link_to 'Add Suggestion', new_organization_suggestion_path(organization.id), :class => 'btn new-btn btn-warning' %>
+<%= link_to add_btn_text('Suggestion'), new_organization_suggestion_path(organization.id), :id => 'add_suggestion_btn', :class => 'btn new-btn btn-warning' %>
 
 <table class="table">
   <tr>
@@ -19,11 +19,13 @@
     <td><%= suggestion.votes_count %></td>
     <td>
       <%= form_for Vote.new, :url => organization_suggestion_votes_path(organization.id, suggestion.id), :html => {:class => 'pull-right'} do |f| %>
-        <% f.submit 'Vote', :class => 'btn pull-right' %>
+        <% f.submit 'Vote', :id => "vote-for-suggestion-#{suggestion.id}", :class => "btn pull-right" %>
       <% end %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%= paginate suggestions, :param_name => "suggestion_page" %>
+<div id ="suggestion_pagination">
+  <%= paginate suggestions, :param_name => "suggestion_page" %>
+</div>

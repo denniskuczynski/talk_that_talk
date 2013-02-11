@@ -7,6 +7,14 @@ module ApplicationHelper
     end
   end
 
+  def add_btn_text(text)
+    s = ''
+    s << content_tag(:i, :class => 'icon-plus icon-white') {}
+    s << '&nbsp;'
+    s << text
+    s.html_safe
+  end
+
   def talk_link(talk)
     if talk.slides_url
       link_to talk.name, talk.slides_url, :target => '_blank'

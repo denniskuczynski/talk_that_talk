@@ -24,7 +24,6 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
 end
 
 gem 'rack-mini-profiler', :group => :development

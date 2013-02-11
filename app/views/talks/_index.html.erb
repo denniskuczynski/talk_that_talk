@@ -1,5 +1,5 @@
 <h3 class="pull-left">Previous Talks</h3>
-<%= link_to 'Add Talk', new_organization_talk_path(organization.id), :class => 'btn new-btn btn-warning' %>
+<%= link_to add_btn_text('Talk'), new_organization_talk_path(organization.id), :id => 'add_talk_btn', :class => 'btn new-btn btn-warning' %>
 
 <table class="table">
   <tr>
@@ -19,11 +19,13 @@
     <td><%= talk.votes_count %></td>
     <td>
       <%= form_for Vote.new, :url => organization_talk_votes_path(organization.id, talk.id), :html => {:class => 'pull-right'} do |f| %>
-        <% f.submit 'Vote', :class => 'btn pull-right' %>
+        <% f.submit 'Vote', :id => "vote-for-talk-#{talk.id}", :class => "btn pull-right" %>
       <% end %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%= paginate talks, :param_name => "talk_page" %>
+<div id ="talk_pagination">
+  <%= paginate talks, :param_name => "talk_page" %>
+</div>
