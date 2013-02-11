@@ -1,4 +1,8 @@
 TalkThatTalk::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   resources :organizations do
     member do
       match 'dashboard' => "organizations#dashboard", :as => 'dashboard'

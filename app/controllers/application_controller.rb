@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def sign_in(user)
+  def session_sign_in(user)
     session[:user_id] = user.id
   end
 
-  def sign_out
+  def session_sign_out
     session[:user_id] = nil
   end
 

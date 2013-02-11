@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def sign_in(user)
+  def session_sign_in(user)
     ApplicationController.set_override_user user
   end
 
-  def sign_out
+  def session_sign_out
     ApplicationController.set_override_user nil
   end
 end
