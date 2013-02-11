@@ -8,7 +8,7 @@ gem 'pg', :group => :production
 gem 'omniauth-github'
 gem 'turbolinks'
 gem 'kaminari'
-gem "activeadmin"
+#gem "activeadmin"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
