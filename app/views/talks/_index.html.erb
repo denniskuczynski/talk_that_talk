@@ -1,0 +1,29 @@
+<h3 class="pull-left">Previous Talks</h3>
+<%= link_to 'Add Talk', new_organization_talk_path(organization.id), :class => 'btn new-btn btn-warning' %>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Presenter</th>
+    <th>Date</th>
+    <th>Description</th>
+    <th colspan="2">Votes</th>
+  </tr>
+
+<% talks.each do |talk| %>
+  <tr>
+    <td><%= talk_link(talk) %></td>
+    <td><%= avatar_link(talk.user) %></td>
+    <td><%= talk.presented_on %></td>
+    <td class="description"><%= talk.description %></td>
+    <td><%= talk.votes_count %></td>
+    <td>
+      <%= form_for Vote.new, :url => organization_talk_votes_path(organization.id, talk.id), :html => {:class => 'pull-right'} do |f| %>
+        <% f.submit 'Vote', :class => 'btn pull-right' %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate talks, :param_name => "talk_page" %>

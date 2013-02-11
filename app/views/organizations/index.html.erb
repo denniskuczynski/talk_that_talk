@@ -1,0 +1,23 @@
+<% content_for :subnav do %>Organizations<% end %>
+
+<%= link_to 'New Organization', new_organization_path, :class => 'btn new-btn btn-warning' %>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Talks</th>
+  </tr>
+
+<% @organizations.each do |organization| %>
+  <tr>
+    <td><%= link_to organization.name, organization %></td>
+    <td><%= organization.description %></td>
+    <td><%= organization.location %></td>
+    <td><%= organization.talks_count %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @organizations %>

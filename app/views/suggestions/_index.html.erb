@@ -1,0 +1,29 @@
+<h3 class="pull-left">Suggestions</h3>
+<%= link_to 'Add Suggestion', new_organization_suggestion_path(organization.id), :class => 'btn new-btn btn-warning' %>
+
+<table class="table">
+  <tr>
+    <th>Concept</th>
+    <th>Suggester</th>
+    <th>Date</th>
+    <th>Description</th>
+    <th colspan="2">Votes</th>
+  </tr>
+
+<% suggestions.each do |suggestion| %>
+  <tr>
+    <td><%= suggestion.concept %></td>
+    <td><%= avatar_link(suggestion.user) %></td>
+    <td><%= suggestion.created_at %></td>
+    <td class="description"><%= suggestion.description %></td>
+    <td><%= suggestion.votes_count %></td>
+    <td>
+      <%= form_for Vote.new, :url => organization_suggestion_votes_path(organization.id, suggestion.id), :html => {:class => 'pull-right'} do |f| %>
+        <% f.submit 'Vote', :class => 'btn pull-right' %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate suggestions, :param_name => "suggestion_page" %>

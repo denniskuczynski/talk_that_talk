@@ -1,0 +1,6 @@
+<% content_for :subnav do %>
+  <% @organization.name %>
+<% end %>
+
+<%= render :partial => '/talks/index', :locals => {organization: @organization, talks: @talks} %>
+<%= render :partial => '/suggestions/index', :locals => {organization: @organization, suggestions: @suggestions} %>
