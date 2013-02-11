@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
-gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3', :group => :test
+gem 'sqlite3', :group => :development
+gem 'pg', :group => :production
 gem 'omniauth-github'
 gem 'turbolinks'
 gem 'kaminari'
