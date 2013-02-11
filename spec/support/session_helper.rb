@@ -1,37 +1,4 @@
-# Monkey Patch the ApplicationController Sign In/Out Logic
-# Don't do this in the real world...
-class ApplicationController < ActionController::Base
-
-  @@override_user = nil
-
-  def self.set_override_user(user)
-    @@override_user = user
-  end
-
-  def self.get_override_user
-    @@override_user
-  end
-
-  def current_user
-    @current_user = ApplicationController.get_override_user
-  end
-
-  private
-
-  def session_sign_in(user)
-    ApplicationController.set_override_user user
-  end
-
-  def session_sign_out
-    ApplicationController.set_override_user nil
-  end
-end
-
 module SessionHelper
-
-  def current_user
-    ApplicationController.get_override_user
-  end
 
   def sign_in
     omniauth = {
@@ -46,10 +13,14 @@ module SessionHelper
             }
         }
     }
-    ApplicationController.set_override_user User.create_from_omniauth(omniauth)
+    @current_user = User.create_from_omniauth(omniauth)
+    CredentialStore.stub(:store_user_id).and_return(true)
+    CredentialStore.stub(:retrieve_user_id).and_return(@current_user.id)
+    
   end
 
   def sign_out
-    ApplicationController.set_override_user nil
+    CredentialStore.stub(:store_user_id).and_return(true)
+    CredentialStore.stub(:retrieve_user_id).and_return(nil)
   end
 end

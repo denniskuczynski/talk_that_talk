@@ -4,23 +4,24 @@ class ApplicationController < ActionController::Base
   private  
   
   def current_user  
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]  
+    user_id = CredentialStore.retrieve_user_id(session)
+    @current_user ||= User.find(user_id) if user_id
   end  
-  
-  helper_method :current_user  
+  helper_method :current_user
+
+  def sign_in(user)
+    CredentialStore.store_user_id(session, user.id)
+  end
+
+  def sign_out
+    @current_user = nil
+    CredentialStore.store_user_id(session, nil)
+  end
 
   def ensure_authentication!
     if not current_user
       redirect_to root_path
     end
-  end
-
-  def session_sign_in(user)
-    session[:user_id] = user.id
-  end
-
-  def session_sign_out
-    session[:user_id] = nil
   end
 
 end

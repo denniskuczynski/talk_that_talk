@@ -14,9 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require ../../../vendor/assets/javascripts/bootstrap-datepicker
-//= require_tree .
-
-
-$(document).ready(function() {
-  $('.datepicker').datepicker();
-});
+//= require_directory .

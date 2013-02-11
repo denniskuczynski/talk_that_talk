@@ -18,8 +18,8 @@ describe "OrganizationDashboardFlow" do
     before(:each) do
       sign_in
       @organization = Organization.new(name: "ExampleOrg", description: "An example organization", location: "An example location")
-      @organization.talks.build(name: 'ExampleTalk', description: 'An example talk', location: 'Talk location', presented_on: Time.now, user_id: current_user.id)
-      @organization.suggestions.build(concept: 'ExampleSuggestion', description: 'An example suggestion', user_id: current_user.id)
+      @organization.talks.build(name: 'ExampleTalk', description: 'An example talk', location: 'Talk location', presented_on: Time.now, user_id: @current_user.id)
+      @organization.suggestions.build(concept: 'ExampleSuggestion', description: 'An example suggestion', user_id: @current_user.id)
       @organization.save!
     end
     it "dashboard_organization_path should show talks and suggestions" do
@@ -79,8 +79,8 @@ describe "OrganizationDashboardFlow" do
     context "with paging" do
       before(:each) do
         for i in 1..10
-          @organization.talks.build(name: "ExampleTalk-#{i}", description: 'An example talk', location: 'Talk location', presented_on: Time.now, user_id: current_user.id)
-          @organization.suggestions.build(concept: "ExampleSuggestion-#{i}", description: 'An example suggestion', user_id: current_user.id)
+          @organization.talks.build(name: "ExampleTalk-#{i}", description: 'An example talk', location: 'Talk location', presented_on: Time.now, user_id: @current_user.id)
+          @organization.suggestions.build(concept: "ExampleSuggestion-#{i}", description: 'An example suggestion', user_id: @current_user.id)
         end
         @organization.save!
       end

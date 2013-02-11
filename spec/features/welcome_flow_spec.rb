@@ -25,6 +25,7 @@ describe "WelcomeFlow" do
     it "can sign out from organizations page" do
       visit root_path
       page.should have_selector "#sign_out_btn"
+      sign_out # Undo the stub created in sign_in helper
       click_link "sign_out_btn"
       page.should have_selector "#sign_in_btn"
       page.should_not have_selector "#sign_out_btn"
