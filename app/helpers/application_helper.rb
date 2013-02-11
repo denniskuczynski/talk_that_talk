@@ -19,7 +19,8 @@ module ApplicationHelper
     if user.gravatar_id
       text = ""
       text << tag(:img, :src => "http://gravatar.com/avatar/#{user.gravatar_id}", :width => 40, :height => 40)
-      text << "&nbsp;#{user.name}"
+      text << tag(:br)
+      text << user.name
       text.html_safe
     else
       user.name

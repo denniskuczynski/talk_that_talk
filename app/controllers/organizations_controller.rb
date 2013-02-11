@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   before_filter :ensure_authentication!
 
-  def index  
+  def index
     @organizations = Organization.scoped.page(params[:page]).per(20)
   end  
   
