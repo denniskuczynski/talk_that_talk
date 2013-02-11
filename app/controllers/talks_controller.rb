@@ -13,9 +13,10 @@ class TalksController < ApplicationController
     if @talk.save  
       flash[:notice] = "Successfully created talk."  
       redirect_to dashboard_organization_path(params[:organization_id])
-    else
+    else  
       @organization = Organization.find(params[:organization_id])
-      render :action => 'new'  
+      flash[:error] = "Error creating talk."  
+      redirect_to dashboard_organization_path(params[:organization_id])
     end  
   end  
 

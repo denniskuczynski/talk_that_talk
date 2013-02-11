@@ -24,7 +24,7 @@ describe "OrganizationsFlow" do
       page.should have_content "An example organization"
       page.should have_content "An example location"
     end
-    it "organizations_path can add new organization" do
+    it "organizations_path can add new organization", :js => true do
       visit organizations_path
       click_link 'add_organization_btn'
       within("form") do

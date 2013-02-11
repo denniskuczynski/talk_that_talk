@@ -52,10 +52,10 @@ describe "OrganizationDashboardFlow" do
       click_button "vote-for-suggestion-#{@organization.suggestions.first.id}"
       click_button "vote-for-suggestion-#{@organization.suggestions.first.id}"
     end
-    it "dashboard_organization_path can add new talk" do
+    it "dashboard_organization_path can add new talk", :js => true do
       visit dashboard_organization_path(@organization.id)
       click_link 'add_talk_btn'
-      within("form") do
+      within("#modal form") do
         fill_in 'Name', :with => 'TalkAdd'
         fill_in 'Description', :with => 'A talk to add'
         fill_in 'Location', :with => 'TalkAdd Location'
@@ -65,10 +65,10 @@ describe "OrganizationDashboardFlow" do
       page.should have_content 'Successfully created talk'
       page.should have_content "TalkAdd"
     end
-    it "dashboard_organization_path can add new suggestion" do
+    it "dashboard_organization_path can add new suggestion", :js => true do
       visit dashboard_organization_path(@organization.id)
       click_link 'add_suggestion_btn'
-      within("form") do
+      within("#modal form") do
         fill_in 'Concept', :with => 'SuggestionAdd'
         fill_in 'Description', :with => 'A suggestion to add'
         click_button 'Create'

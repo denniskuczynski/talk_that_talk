@@ -1,5 +1,5 @@
 <h3 class="pull-left">Suggestions</h3>
-<%= link_to add_btn_text('Suggestion'), new_organization_suggestion_path(organization.id), :id => 'add_suggestion_btn', :class => 'btn new-btn btn-warning' %>
+<%= link_to add_btn_text('Suggestion'), new_organization_suggestion_path(organization.id), :id => 'add_suggestion_btn', :class => 'btn new-btn btn-warning', 'data-remote'.to_s => true %>
 
 <table class="table">
   <tr>

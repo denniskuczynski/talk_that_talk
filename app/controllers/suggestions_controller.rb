@@ -15,7 +15,8 @@ class SuggestionsController < ApplicationController
       redirect_to dashboard_organization_path(params[:organization_id])
     else  
       @organization = Organization.find(params[:organization_id])
-      render :action => 'new'  
-    end  
+      flash[:error] = "Error creating suggestion."  
+      redirect_to dashboard_organization_path(params[:organization_id])
+    end
   end
 end

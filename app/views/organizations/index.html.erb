@@ -1,6 +1,6 @@
 <% content_for :subnav do %>Organizations<% end %>
 
-<%= link_to add_btn_text('Organization'), new_organization_path, :id => 'add_organization_btn', :class => 'btn new-btn btn-warning' %>
+<%= link_to add_btn_text('Organization'), new_organization_path, :id => 'add_organization_btn', :class => 'btn new-btn btn-warning', 'data-remote'.to_s => true %>
 
 <table class="table">
   <tr>

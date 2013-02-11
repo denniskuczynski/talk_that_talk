@@ -1,5 +1,5 @@
 <h3 class="pull-left">Previous Talks</h3>
-<%= link_to add_btn_text('Talk'), new_organization_talk_path(organization.id), :id => 'add_talk_btn', :class => 'btn new-btn btn-warning' %>
+<%= link_to add_btn_text('Talk'), new_organization_talk_path(organization.id), :id => 'add_talk_btn', :class => 'btn new-btn btn-warning', 'data-remote'.to_s => true %>
 
 <table class="table">
   <tr>

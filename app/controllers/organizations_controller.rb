@@ -17,9 +17,10 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(params[:organization])  
     if @organization.save  
       flash[:notice] = "Successfully created organization."  
-      redirect_to @organization  
-    else  
       redirect_to dashboard_organization_path(@organization.id)
+    else  
+      flash[:error] = "Error creating organization."  
+      redirect_to organizations_path(@organization.id)
     end  
   end  
 
