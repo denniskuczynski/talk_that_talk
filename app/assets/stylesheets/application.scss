@@ -16,3 +16,12 @@
 .description {
     width: 400px;
 }
+
+.modal-body {
+  overflow-y: none;
+  max-height: none;
+}
+
+.datepicker {
+  z-index: 50000;
+}

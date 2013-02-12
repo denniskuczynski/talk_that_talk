@@ -9,8 +9,10 @@
       this.suggestions_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionsView({organization_id: this.organization_id, suggestions: options.suggestions});
     },
 
-    remove: function(options) {
-      alert('dash remove');
+    cleanup: function(options) {
+      this.talks_view.cleanup();
+      this.talks_view.cleanup();
+      this.remove();
     },
 
     render: function() {

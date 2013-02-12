@@ -12,10 +12,10 @@ class VotesController < ApplicationController
       if @vote.save
         render :json => true
       else
-        raise "Unable to save vote"
+        render :json => false
       end
     rescue   
-      raise "Unable to save vote"
+      render :json => false
     end
   end  
 

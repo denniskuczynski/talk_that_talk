@@ -18,12 +18,9 @@ class SuggestionsController < ApplicationController
       :user_id => @current_user.id, 
       :organization_id => params[:organization_id]))  
     if @suggestion.save  
-      flash[:notice] = "Successfully created suggestion."  
-      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
+      render :json => true
     else  
-      @organization = Organization.find(params[:organization_id])
-      flash[:error] = "Error creating suggestion."  
-      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
+      render :json => false
     end
   end
 end
