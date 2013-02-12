@@ -1,9 +1,9 @@
 (function() {
   
-  TalkThatTalk.Views.OrganizationDashboardTalksView = Backbone.View.extend({
+  TalkThatTalk.Views.Talks.IndexView = Backbone.View.extend({
     tagName:  'div',
 
-    template: JST["backbone/templates/organization_dashboard_talks"],
+    template: JST["backbone/templates/talks/index"],
 
     events: {
       'click #add_talk_btn' : 'add_talk_clicked'
@@ -19,6 +19,7 @@
 
     cleanup: function(options) {
       this.cleanupItemViews();
+      this.cleanupPagingView();
       this.remove();
     },
 
@@ -29,18 +30,16 @@
       this.item_views = [];
     },
 
+    cleanupPagingView: function() {
+      if (this.paging_view !== null) { this.paging_view.remove(); }
+    },
+
     pager_success: function(collection, response) {
-      console.log("Talks pager success");
-      console.log(collection);
-      console.log(response);
-      console.log(this.talks);
+      //console.log("Retrieved talks page successfully");
     },
 
     pager_error: function(collection, response) {
-      console.log("Talks pager error");
-      console.log(collection);
-      console.log(response);
-      console.log(this.talks);
+      //console.log("Error retrieving suggestions page");
     },
 
     add_talk_clicked: function(event) {
@@ -59,13 +58,13 @@
       this.cleanupItemViews();
       var item_views = this.item_views;
       _.each(this.talks.models, function(item) {
-        var item_view = new TalkThatTalk.Views.OrganizationDashboardTalkView({organization_id: this.organization_id, talk: item});
+        var item_view = new TalkThatTalk.Views.Talks.ShowView({organization_id: this.organization_id, talk: item});
         item_views.push(item_view);
         table.append(item_view.render().el);
       });
 
       var pagination = this.$el.find('#talk_pagination');
-      if (this.paging_view !== null) { this.paging_view.remove(); }
+      this.cleanupPagingView();
       this.paging_view = new TalkThatTalk.Views.OrganizationDashboardPagingView({collection: collection});
       pagination.html(this.paging_view.render().el);
     }

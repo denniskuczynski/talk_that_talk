@@ -5,8 +5,8 @@
 
     initialize: function(options) {
       this.organization_id = options.organization_id;
-      this.talks_view = new TalkThatTalk.Views.OrganizationDashboardTalksView({organization_id: this.organization_id, talks: options.talks});
-      this.suggestions_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionsView({organization_id: this.organization_id, suggestions: options.suggestions});
+      this.talks_view = new TalkThatTalk.Views.Talks.IndexView({organization_id: this.organization_id, talks: options.talks});
+      this.suggestions_view = new TalkThatTalk.Views.Suggestions.IndexView({organization_id: this.organization_id, suggestions: options.suggestions});
     },
 
     cleanup: function(options) {

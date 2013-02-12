@@ -8,11 +8,6 @@ class TalksController < ApplicationController
     render :json => { data: talks, total: total_talks }
   end
 
-  def new
-    @organization = Organization.find(params[:organization_id])
-    @talk = @organization.talks.build
-  end  
-    
   def create  
     @talk = Talk.new(params[:talk].merge(
       :user_id => @current_user.id, 

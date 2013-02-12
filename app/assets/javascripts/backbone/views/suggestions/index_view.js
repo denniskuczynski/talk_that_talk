@@ -1,9 +1,9 @@
 (function() {
   
-  TalkThatTalk.Views.OrganizationDashboardSuggestionsView = Backbone.View.extend({
+  TalkThatTalk.Views.Suggestions.IndexView = Backbone.View.extend({
     tagName:  'div',
 
-    template: JST["backbone/templates/organization_dashboard_suggestions"],
+    template: JST["backbone/templates/suggestions/index"],
 
     events: {
       'click #add_suggestion_btn' : 'add_suggestion_clicked'
@@ -19,6 +19,7 @@
 
     cleanup: function(options) {
       this.cleanupItemViews();
+      this.cleanupPagingView();
       this.remove();
     },
 
@@ -29,18 +30,16 @@
       this.item_views = [];
     },
 
+    cleanupPagingView: function() {
+      if (this.paging_view !== null) { this.paging_view.remove(); }
+    },
+
     pager_success: function(collection, response) {
-      console.log("Suggestions pager success");
-      console.log(collection);
-      console.log(response);
-      console.log(this.suggestions);
+      //console.log("Retrieved suggestions page successfully");
     },
 
     pager_error: function(collection, response) {
-      console.log("Suggestions pager error");
-      console.log(collection);
-      console.log(response);
-      console.log(this.suggestions);
+      //console.log("Error retrieving suggestions page");
     },
 
     add_suggestion_clicked: function(event) {
@@ -59,13 +58,13 @@
       this.cleanupItemViews();
       var item_views = this.item_views;
       _.each(this.suggestions.models, function(item) {
-        var item_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionView({organization_id: this.organization_id, suggestion: item});
+        var item_view = new TalkThatTalk.Views.Suggestions.ShowView({organization_id: this.organization_id, suggestion: item});
         item_views.push(item_view);
         table.append(item_view.render().el);
       });
 
       var pagination = this.$el.find('#suggestion_pagination');
-      if (this.paging_view !== null) { this.paging_view.remove(); }
+      this.cleanupPagingView();
       this.paging_view = new TalkThatTalk.Views.OrganizationDashboardPagingView({collection: collection});
       pagination.html(this.paging_view.render().el);
     }

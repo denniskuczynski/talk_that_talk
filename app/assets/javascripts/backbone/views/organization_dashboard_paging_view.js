@@ -14,8 +14,6 @@
     },
 
     paging_link_clicked: function(event) {
-      console.log("page_link");
-      console.log(this.collection);
       event.preventDefault();
       var $target = $(event.currentTarget);
       var linkText = $target.text();
@@ -29,8 +27,6 @@
     },
 
     render: function() {
-      console.log("render paging");
-      console.log(this.collection);
       this.$el.html(this.template({collection: this.collection}));
       return this;
     }

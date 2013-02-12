@@ -2,10 +2,10 @@
 
   TalkThatTalk.Routers.OrganizationDashboardRouter = Backbone.Router.extend({
     routes:{
-      'index'    : 'index',
-      'new_talk' : 'new_talk',
+      'index'          : 'index',
+      'new_talk'       : 'new_talk',
       'new_suggestion' : 'new_suggestion',
-      ".*"        : "index"
+      ".*"             : "index"
     },
 
     initialize: function(options) {
@@ -16,6 +16,17 @@
       
       this.suggestions = new TalkThatTalk.Collections.Suggestions({});
       this.suggestions.paginator_core.url = '/organizations/'+this.organization_id+'/suggestions.json?';
+
+      $('#modal').on('hidden', function () {
+        TalkThatTalk.OrganizationDashboardRouter.navigate('index', {trigger: false});
+      });
+    },
+
+    add_alert_message: function(message) {
+      $('<div class="alert"><p>'+message+'</p></div>').insertAfter($('.navbar.subnav'));
+      window.setTimeout(function() {
+        $('.alert').fadeOut();
+      }, 3000);
     },
 
     index: function() {
@@ -25,23 +36,17 @@
     },
 
     new_talk: function() {
-      var view = new TalkThatTalk.Views.OrganizationDashboardNewTalkView({organization_id: this.organization_id});
+      var view = new TalkThatTalk.Views.Talks.NewView({organization_id: this.organization_id});
       $('#modal-title').html('Add Talk');
       $('#modal-body').html(view.render().el);
       $('#modal').modal({show: true});
-      $('#modal').on('hidden', function () {
-        TalkThatTalk.OrganizationDashboardRouter.navigate('index', {trigger: false});
-      })
     },
 
     new_suggestion: function() {
-      var view = new TalkThatTalk.Views.OrganizationDashboardNewSuggestionView({organization_id: this.organization_id});
+      var view = new TalkThatTalk.Views.Suggestions.NewView({organization_id: this.organization_id});
       $('#modal-title').html('Add Suggestion');
       $('#modal-body').html(view.render().el);
       $('#modal').modal({show: true});
-      $('#modal').on('hidden', function () {
-        TalkThatTalk.OrganizationDashboardRouter.navigate('index', {trigger: false});
-      })
     }
   });
 

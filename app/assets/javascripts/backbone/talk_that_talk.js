@@ -10,14 +10,16 @@
     Models: {},
     Collections: {},
     Routers: {},
-    Views: {}
+    Views: {
+      Talks: {},
+      Suggestions: {}
+    }
   };
 
   function organization_dashboard_on_ready_handler() {
     if ($('#organization_dashboard').length > 0) {
       if (TalkThatTalk.OrganizationDashboardRouter === undefined) {
         var organization_id = $('#organization_dashboard').data('organization-id');
-        console.log("Initializing router with "+organization_id)
         TalkThatTalk.OrganizationDashboardRouter = new TalkThatTalk.Routers.OrganizationDashboardRouter({organization_id: organization_id});
         Backbone.history.start();      
       }      

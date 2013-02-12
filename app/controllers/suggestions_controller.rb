@@ -8,11 +8,6 @@ class SuggestionsController < ApplicationController
     render :json => { data: suggestions, total: total_suggestions }
   end
 
-  def new  
-    @organization = Organization.find(params[:organization_id])
-    @suggestion = @organization.suggestions.build
-  end  
-    
   def create
     @suggestion = Suggestion.new(params[:suggestion].merge(
       :user_id => @current_user.id, 

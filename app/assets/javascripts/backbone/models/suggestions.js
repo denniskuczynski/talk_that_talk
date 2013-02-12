@@ -23,7 +23,6 @@
       this.totalPages = Math.ceil(response.total / this.paginator_ui.perPage)
       return data;
     }
-
   });
 
 }());
