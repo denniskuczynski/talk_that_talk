@@ -4,8 +4,9 @@
     tagName:  'div',
 
     initialize: function(options) {
-      this.talks_view = new TalkThatTalk.Views.OrganizationDashboardTalksView({talks: options.talks});
-      this.suggestions_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionsView({suggestions: options.suggestions});
+      this.organization_id = options.organization_id;
+      this.talks_view = new TalkThatTalk.Views.OrganizationDashboardTalksView({organization_id: this.organization_id, talks: options.talks});
+      this.suggestions_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionsView({organization_id: this.organization_id, suggestions: options.suggestions});
     },
 
     remove: function(options) {

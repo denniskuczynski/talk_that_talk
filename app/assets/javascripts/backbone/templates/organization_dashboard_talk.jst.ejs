@@ -8,7 +8,7 @@
 <td><img height="40" src="http://gravatar.com/avatar/<%= talk.get('gravatar_id') %>" width="40" /><br /><%= talk.get('user_name') %></td>
 <td><%= talk.get('presented_on') %></td>
 <td class="description"><%= talk.get('description') %></td>
-<td><%= talk.get('votes_count') %></td>
+<td id="votes-count-<%= talk.get('id') %>"><%= talk.get('votes_count') %></td>
 <td>
   <button class="btn pull-right vote-for-talk" id="vote-for-talk-<%= talk.get('id') %>">Vote</button>
 </td>

@@ -10,13 +10,12 @@ class VotesController < ApplicationController
     })
     begin
       if @vote.save
-        flash[:notice] = "Your vote was counted"
-        redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
+        render :json => true
       else
-        redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
+        raise "Unable to save vote"
       end
     rescue   
-      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
+      raise "Unable to save vote"
     end
   end  
 

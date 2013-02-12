@@ -18,7 +18,7 @@
       suggestions.paginator_core.url = '/organizations/'+this.organization_id+'/suggestions.json?';
       
       if (this.view !== undefined) { this.view.remove(); }
-      this.view = new TalkThatTalk.Views.OrganizationDashboardView({talks: talks, suggestions: suggestions});
+      this.view = new TalkThatTalk.Views.OrganizationDashboardView({organization_id: this.organization_id, talks: talks, suggestions: suggestions});
       $('#organization_dashboard').html(this.view.render().el);
     },
     new_talk: function() {

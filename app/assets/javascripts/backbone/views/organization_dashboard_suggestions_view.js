@@ -10,6 +10,7 @@
     },
 
     initialize: function(options) {
+      this.organization_id = options.organization_id;
       this.suggestions = options.suggestions;
       this.suggestions.on('reset', this.renderItems, this);
     },
@@ -44,7 +45,7 @@
       var table = this.$el.find('#suggestion_table');
       table.find('.dataRow').remove(); //TODO the underlying views should be removed
       _.each(this.suggestions.models, function(item) {
-        var item_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionView({suggestion: item});
+        var item_view = new TalkThatTalk.Views.OrganizationDashboardSuggestionView({organization_id: this.organization_id, suggestion: item});
         table.append(item_view.render().el);
       });
 
