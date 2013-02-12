@@ -2,6 +2,11 @@
 
 A Demonstration Ruby/Backbone application.
 
+There are three code branches:
+* https://github.com/denniskuczynski/talk_that_talk/tree/rails_basic
+* https://github.com/denniskuczynski/talk_that_talk/tree/rails_with_js_handlers
+* https://github.com/denniskuczynski/talk_that_talk/tree/rails_with_backbone
+
 http://talkthattalk.herokuapp.com
 
 
