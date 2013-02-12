@@ -6,7 +6,7 @@ class OrganizationsController < ApplicationController
   end  
   
   def show
-    redirect_to dashboard_organization_path(params[:id])
+    redirect_to dashboard_organization_path(params[:id], :anchor => 'index')
   end  
   
   def new  
@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(params[:organization])  
     if @organization.save  
       flash[:notice] = "Successfully created organization."  
-      redirect_to dashboard_organization_path(@organization.id)
+      redirect_to dashboard_organization_path(@organization.id, :anchor => 'index')
     else  
       flash[:error] = "Error creating organization."  
       redirect_to organizations_path(@organization.id)
@@ -26,7 +26,5 @@ class OrganizationsController < ApplicationController
 
   def dashboard
     @organization = Organization.find(params[:id])
-    @talks = @organization.talks.order('votes_count DESC').page(params[:talk_page]).per(5)
-    @suggestions = @organization.suggestions.order('votes_count DESC').page(params[:suggestion_page]).per(5)
   end
 end

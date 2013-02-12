@@ -1,4 +1,4 @@
-(function(Backbone) {
+(function() {
   
   TalkThatTalk.Views.OrganizationDashboardView = Backbone.View.extend({
     tagName:  'div',
@@ -19,4 +19,4 @@
     }
   });
 
-}(Backbone));
+}());

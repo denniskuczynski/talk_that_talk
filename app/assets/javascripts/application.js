@@ -18,5 +18,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
+//= require ../../../vendor/assets/javascripts/backbone.paginator
 //= require_directory ./backbone
 //= require_directory .

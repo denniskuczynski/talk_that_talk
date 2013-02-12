@@ -1,4 +1,4 @@
-(function(Backbone) {
+(function() {
   
   TalkThatTalk.Views.OrganizationDashboardTalksView = Backbone.View.extend({
     tagName:  'div',
@@ -10,7 +10,22 @@
     },
 
     initialize: function(options) {
-      this.talks = options.talks || [];
+      this.talks = options.talks;
+      this.talks.on('reset', this.renderItems, this);
+    },
+
+    pager_success: function(collection, response) {
+      console.log("Talks pager success");
+      console.log(collection);
+      console.log(response);
+      console.log(this.talks);
+    },
+
+    pager_error: function(collection, response) {
+      console.log("Talks pager error");
+      console.log(collection);
+      console.log(response);
+      console.log(this.talks);
     },
 
     add_talk_clicked: function() {
@@ -19,13 +34,23 @@
 
     render: function() {
       this.$el.html(this.template());
+      this.talks.pager({success: this.pager_success, error: this.pager_error});
+      return this;
+    },
+
+    renderItems: function(collection, options) {
+      console.log('render items');
       var table = this.$el.find('#talk_table');
-      _.each(this.talks, function(item) {
+      table.find('.dataRow').remove(); //TODO the underlying views should be removed
+      _.each(this.talks.models, function(item) {
         var item_view = new TalkThatTalk.Views.OrganizationDashboardTalkView({talk: item});
         table.append(item_view.render().el);
       });
-      return this;
+
+      var pagination = this.$el.find('#talk_pagination');
+      var paging_view = new TalkThatTalk.Views.OrganizationDashboardPagingView({collection: collection});
+      pagination.html(paging_view.render().el);
     }
   });
 
-}(Backbone));
+}());

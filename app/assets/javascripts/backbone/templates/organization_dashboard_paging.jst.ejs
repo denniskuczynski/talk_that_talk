@@ -1,0 +1,23 @@
+<div class="pagination">
+  <ul>
+  <% if (collection.currentPage !== 1) { %>
+        <li class="">
+          <a href="#" rel="next" class="paging-link">Prev</a>
+        </li>
+  <% } %>
+  <% for (var i=1; i <= collection.totalPages; i++) { %>
+      <% if (i == collection.currentPage) { %>
+        <li class="">
+      <% } else { %>
+        <li class="active">
+      <% } %>
+          <a href="#" rel="next" class="paging-link"><%= i %></a>
+        </li>
+  <% } %>
+  <% if (collection.currentPage !== collection.totalPages) { %>
+        <li class="">
+          <a href="#" rel="next" class="paging-link">Next</a>
+        </li>
+  <% } %>
+  </ul>
+</div>

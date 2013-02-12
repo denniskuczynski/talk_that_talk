@@ -11,12 +11,12 @@ class VotesController < ApplicationController
     begin
       if @vote.save
         flash[:notice] = "Your vote was counted"
-        redirect_to dashboard_organization_path(params[:organization_id])
+        redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
       else
-        redirect_to dashboard_organization_path(params[:organization_id])
+        redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
       end
     rescue   
-      redirect_to dashboard_organization_path(params[:organization_id])
+      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
     end
   end  
 

@@ -4,7 +4,7 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-(function(window) {
+(function() {
 
   window.TalkThatTalk = {
     Models: {},
@@ -13,4 +13,18 @@
     Views: {}
   };
 
-}(window));
+  function organization_dashboard_on_ready_handler() {
+    if ($('#organization_dashboard').length > 0) {
+      if (TalkThatTalk.OrganizationDashboardRouter === undefined) {
+        var organization_id = $('#organization_dashboard').data('organization-id');
+        console.log("Initializing router with "+organization_id)
+        TalkThatTalk.OrganizationDashboardRouter = new TalkThatTalk.Routers.OrganizationDashboardRouter({organization_id: organization_id});
+        Backbone.history.start();      
+      }      
+    }
+  }
+
+  $(document).ready(organization_dashboard_on_ready_handler);
+  $(document).bind('page:change', organization_dashboard_on_ready_handler)
+
+}());

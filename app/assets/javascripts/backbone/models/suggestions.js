@@ -1,7 +1,29 @@
-(function(Backbone) {
+(function() {
  
-  TalkThatTalk.Collections.Suggestions = Backbone.Collection.extend({
-    model: TalkThatTalk.Models.Suggestion
+  TalkThatTalk.Collections.Suggestions = Backbone.Paginator.requestPager.extend({
+    model: TalkThatTalk.Models.Suggestion,
+
+    paginator_core: {
+      type: 'GET',
+      dataType: 'json'
+    },
+
+    paginator_ui: {
+      firstPage: 1,
+      currentPage: 1,
+      perPage: 5,
+    },
+
+    server_api: {
+      'page': function() { return this.currentPage }
+    },
+
+    parse: function (response) {
+      var data = response.data;
+      this.totalPages = Math.ceil(response.total / this.paginator_ui.perPage)
+      return data;
+    }
+
   });
 
-}(Backbone));
+}());

@@ -1,7 +1,8 @@
-(function(Backbone) {
+(function() {
   
   TalkThatTalk.Views.OrganizationDashboardTalkView = Backbone.View.extend({
     tagName:  'tr',
+    className: 'dataRow',
 
     template: JST["backbone/templates/organization_dashboard_talk"],
 
@@ -22,4 +23,4 @@
     }
   });
 
-}(Backbone));
+}());

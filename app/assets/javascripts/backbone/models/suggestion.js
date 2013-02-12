@@ -1,4 +1,4 @@
-(function(Backbone) {
+(function() {
 
   TalkThatTalk.Models.Suggestion = Backbone.Model.extend({
     defaults: {
@@ -11,4 +11,4 @@
     }
   });
 
-}(Backbone));
+}());

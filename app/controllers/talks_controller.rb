@@ -1,6 +1,13 @@
 class TalksController < ApplicationController
   before_filter :ensure_authentication!
 
+  def index
+    organization = Organization.find(params[:organization_id])
+    total_talks = organization.talks_count
+    talks = organization.talks.order('votes_count DESC').page(params[:page]).per(5)
+    render :json => { data: talks, total: total_talks }
+  end
+
   def new
     @organization = Organization.find(params[:organization_id])
     @talk = @organization.talks.build
@@ -12,11 +19,11 @@ class TalksController < ApplicationController
       :organization_id => params[:organization_id]))
     if @talk.save  
       flash[:notice] = "Successfully created talk."  
-      redirect_to dashboard_organization_path(params[:organization_id])
+      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
     else  
       @organization = Organization.find(params[:organization_id])
       flash[:error] = "Error creating talk."  
-      redirect_to dashboard_organization_path(params[:organization_id])
+      redirect_to dashboard_organization_path(params[:organization_id], :anchor => 'index')
     end  
   end  
 

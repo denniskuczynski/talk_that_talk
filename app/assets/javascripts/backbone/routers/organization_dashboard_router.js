@@ -1,4 +1,4 @@
-(function(Backbone) {
+(function() {
 
   TalkThatTalk.Routers.OrganizationDashboardRouter = Backbone.Router.extend({
     routes:{
@@ -7,11 +7,16 @@
       'new_suggestion' : 'new_suggestion'
     },
 
+    initialize: function(options) {
+      this.organization_id = options.organization_id;
+    },
+
     index: function() {
-      var talks = [];
-      talks.push(new TalkThatTalk.Models.Talk({}));
-      var suggestions = [];
-      suggestions.push(new TalkThatTalk.Models.Suggestion({}));
+      var talks = new TalkThatTalk.Collections.Talks({});
+      talks.paginator_core.url = '/organizations/'+this.organization_id+'/talks.json?';
+      var suggestions = new TalkThatTalk.Collections.Suggestions({});
+      suggestions.paginator_core.url = '/organizations/'+this.organization_id+'/suggestions.json?';
+      
       if (this.view !== undefined) { this.view.remove(); }
       this.view = new TalkThatTalk.Views.OrganizationDashboardView({talks: talks, suggestions: suggestions});
       $('#organization_dashboard').html(this.view.render().el);
@@ -24,14 +29,4 @@
     }
   });
 
-  function organization_dashboard_on_ready_handler() {
-    if ($('#organization_dashboard').length > 0) {
-      TalkThatTalk.OrganizationDashboardRouter = new TalkThatTalk.Routers.OrganizationDashboardRouter();
-      Backbone.history.start();
-    }
-  }
-
-  $(document).ready(organization_dashboard_on_ready_handler);
-  $(document).bind('page:change', organization_dashboard_on_ready_handler)
-
-}(Backbone));
+}());

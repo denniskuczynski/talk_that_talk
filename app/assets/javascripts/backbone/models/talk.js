@@ -1,4 +1,4 @@
-(function(Backbone) {
+(function() {
 
   TalkThatTalk.Models.Talk = Backbone.Model.extend({
     defaults: {
@@ -13,4 +13,4 @@
     }
   });
 
-}(Backbone));
+}());
