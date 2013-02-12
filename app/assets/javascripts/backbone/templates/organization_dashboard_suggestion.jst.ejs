@@ -1,0 +1,8 @@
+<td><%= suggestion.get('concept') %></td>
+<td><img height="40" src="http://gravatar.com/avatar/<%= suggestion.get('gravatar_id') %>" width="40" /><br /><%= suggestion.get('user_name') %></td>
+<td><%= suggestion.get('created_at') %></td>
+<td class="description"><%= suggestion.get('description') %></td>
+<td><%= suggestion.get('votes_count') %></td>
+<td>
+  <button class="btn pull-right vote-for-suggestion" id="vote-for-suggestion-<%= suggestion.get('id') %>">Vote</button>
+</td>
