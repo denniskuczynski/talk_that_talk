@@ -23,15 +23,18 @@
           $('#modal').modal('hide');
           TalkThatTalk.OrganizationDashboardRouter.navigate('index', {trigger: true});
           TalkThatTalk.OrganizationDashboardRouter.add_alert_message('Successfully created suggestion');
+          this.destory();
         } else {
           $('#modal').modal('hide');
           TalkThatTalk.OrganizationDashboardRouter.add_alert_message('Error creating suggestion');
+          this.destory();
         }
       }
       
       function onError(model, res) {
         $('#modal').modal('hide');
         alert(res.statusText);
+        this.destory();
       }
     },
 
