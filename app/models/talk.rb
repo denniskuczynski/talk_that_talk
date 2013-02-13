@@ -10,4 +10,13 @@ class Talk < ActiveRecord::Base
   validates :location, :presence => true
   validates :presented_on, :presence => true
 
+  def as_json(object)
+    { 
+      name: name, description: description, 
+      location: location, presented_on: presented_on, 
+      slides_url: slides_url, user_name: user.name,
+      gravatar_id: user.gravatar_id
+    }
+  end
+
 end

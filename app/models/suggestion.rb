@@ -8,4 +8,12 @@ class Suggestion < ActiveRecord::Base
   validates :concept, :presence => true
   validates :description, :presence => true
 
+  def as_json(object)
+    { 
+      concept: concept, description: description, 
+      user_name: user.name,
+      gravatar_id: user.gravatar_id
+    }
+  end
+
 end
