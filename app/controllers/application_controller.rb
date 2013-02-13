@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   end  
   helper_method :current_user
 
-  def sign_in(user)
+  def app_sign_in(user)
     CredentialStore.store_user_id(session, user.id)
   end
 
-  def sign_out
+  def app_sign_out
     @current_user = nil
     CredentialStore.store_user_id(session, nil)
   end
