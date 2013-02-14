@@ -12,6 +12,7 @@ class Talk < ActiveRecord::Base
 
   def as_json(object)
     { 
+      id: id,
       name: name, description: description, 
       location: location, presented_on: presented_on, 
       slides_url: slides_url, user_name: user.name,

@@ -18,6 +18,7 @@
     },
 
     cleanup: function(options) {
+      this.talks.off('reset');
       this.cleanupItemViews();
       this.cleanupPagingView();
       this.remove();

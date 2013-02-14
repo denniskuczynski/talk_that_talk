@@ -10,6 +10,7 @@ class Suggestion < ActiveRecord::Base
 
   def as_json(object)
     { 
+      id: id,
       concept: concept, description: description, 
       user_name: user.name,
       gravatar_id: user.gravatar_id

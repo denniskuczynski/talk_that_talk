@@ -23,17 +23,17 @@
           $('#modal').modal('hide');
           TalkThatTalk.OrganizationDashboardRouter.navigate('index', {trigger: true});
           TalkThatTalk.OrganizationDashboardRouter.add_alert_message('Successfully created talk');
-          this.destory();
+          this.destroy();
         } else {
           $('#modal').modal('hide');
           TalkThatTalk.OrganizationDashboardRouter.add_alert_message('Error creating talk');
-          this.destory();
+          this.destroy();
         }
       }
       
       function onError(model, res) {
         $('#modal').modal('hide');
-        this.destory();
+        this.destroy();
         alert(res.statusText);
       }
     },
